@@ -1,7 +1,9 @@
 import { Canvas } from '@react-three/fiber'
-import { ScrollControls } from '@react-three/drei'
+import { Preload, Scroll, ScrollControls } from '@react-three/drei'
 import Lens from './components/Lens'
 import './styles/main.scss'
+import Images from './components/Images'
+
 
 export default function App() {
   // const props = useControls({
@@ -14,9 +16,18 @@ export default function App() {
 
   return (
     <>
-      <Canvas camera={{ position: [0, 0, 20], fov: 15 }} gl={{ antialias: false }} dpr={[1, 1.5]}>
+      <Canvas
+        camera={{ position: [0, 0, 20], fov: 15 }}
+        gl={{ antialias: false, alpha: false }}
+        dpr={[1, 1.5]}
+      >
         <ScrollControls damping={0.5} pages={3} distance={0.5}>
-          <Lens />
+          <Lens>
+            <Scroll>
+              <Images />
+            </Scroll>
+            <Preload />
+          </Lens>
         </ScrollControls>
       </Canvas>
     </>

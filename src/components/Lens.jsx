@@ -35,8 +35,8 @@ export default function Lens({ children, damping = 0.15, ...props }) {
     <>
       {createPortal(children, scene)}
       <mesh scale={[viewport.width, viewport.height, 1]}>
-        <planeGeometry />
-        <meshBasicMaterial map={buffer.texture} />
+        <planeGeometry/>
+        <meshBasicMaterial color='#b0b0b0' />
       </mesh>
       <mesh
         scale={0.25}
@@ -52,10 +52,6 @@ export default function Lens({ children, damping = 0.15, ...props }) {
           chromaticAberration={0.05}
         />
       </mesh>
-      <Scroll>
-        <Images />
-      </Scroll>
-      <Preload />
     </>
   )
 }
