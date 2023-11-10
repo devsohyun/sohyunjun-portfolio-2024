@@ -1,0 +1,38 @@
+.gelion-light {
+  font-family: 'Gelion', sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.gelion-regular {
+  font-family: 'Gelion', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.gelion-bold {
+  font-family: 'Gelion', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gelion';
+  src: url('/fonts/Gelion-Light.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gelion';
+  src: url('/fonts/Gelion-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gelion';
+  src: url('/fonts/Gelion-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}

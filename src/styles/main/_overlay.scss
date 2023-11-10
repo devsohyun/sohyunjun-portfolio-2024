@@ -1,0 +1,32 @@
+.overlay {
+  @extend .gelion-regular;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 1000;
+
+  a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  #logo {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 20px;
+  }
+
+  #nav {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 20px;
+  }
+}

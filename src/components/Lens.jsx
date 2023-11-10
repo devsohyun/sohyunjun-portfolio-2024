@@ -1,24 +1,25 @@
 import * as THREE from 'three'
-import { useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { createPortal, useFrame, useThree } from '@react-three/fiber'
 import {
   useFBO,
   useGLTF,
   Scroll,
   MeshTransmissionMaterial,
+  Preload,
 } from '@react-three/drei'
 import { easing } from 'maath'
-import Images from './Images.jsx'
+import Images from './Images'
 
-export default function Lens(children, damping = 0.15, ...props) {
+export default function Lens({ children, damping = 0.15, ...props }) {
   const ref = useRef()
-  const { nodes } = useGLTF('/lens-transformed.glb')
+  const { nodes } = useGLTF('/models/lens-transformed.glb')
   const buffer = useFBO()
   const viewport = useThree((state) => state.viewport)
   const [scene] = useState(() => new THREE.Scene())
-  const { speed } = props
   useFrame((state, delta) => {
     const viewport = state.viewport.getCurrentViewport(state.camera, [0, 0, 15])
+
     easing.damp3(
       ref.current.position,
       [
@@ -32,9 +33,7 @@ export default function Lens(children, damping = 0.15, ...props) {
   })
   return (
     <>
-			{/* error here */}
-      {createPortal(children, scene)} 
-			{/* error here */}
+      {createPortal(children, scene)}
       <mesh scale={[viewport.width, viewport.height, 1]}>
         <planeGeometry />
         <meshBasicMaterial map={buffer.texture} />
@@ -46,11 +45,17 @@ export default function Lens(children, damping = 0.15, ...props) {
         geometry={nodes.Cylinder.geometry}
         {...props}
       >
-        <MeshTransmissionMaterial />
+        <MeshTransmissionMaterial
+          ior={1.2}
+          thickness={0.6}
+          anisotropy={0.1}
+          chromaticAberration={0.05}
+        />
       </mesh>
       <Scroll>
         <Images />
       </Scroll>
+      <Preload />
     </>
   )
 }
