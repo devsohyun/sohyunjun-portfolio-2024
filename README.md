@@ -1,2 +1,2 @@
-# sohyunjun-portfolio-2024
+# sohyunjun-portfolio-vite
 portfolio with vite app
