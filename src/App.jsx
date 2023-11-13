@@ -3,16 +3,12 @@ import { Preload, Scroll, ScrollControls } from '@react-three/drei'
 import Lens from './components/Lens'
 import './styles/main.scss'
 import Images from './components/Images'
-
+import { useControls } from 'leva'
 
 export default function App() {
-  // const props = useControls({
-  //   focus: { value: 5.1, min: 3, max: 7, step: 0.01 },
-  //   speed: { value: 30, min: 0.1, max: 100, step: 0.1 },
-  //   aperture: { value: 5.6, min: 1, max: 5.6, step: 0.1 },
-  //   fov: { value: 50, min: 0, max: 200 },
-  //   curl: { value: 0.17, min: 0.01, max: 0.5, step: 0.01 },
-  // })
+  const props = useControls({
+    scale: { value: 0.25, min: 0.1, max: 1, step: 0.01 },
+  })
 
   return (
     <>
@@ -22,7 +18,7 @@ export default function App() {
         dpr={[1, 1.5]}
       >
         <ScrollControls damping={0.5} pages={3} distance={0.5}>
-          <Lens>
+          <Lens scale={props.scale}>
             <Scroll>
               <Images />
             </Scroll>

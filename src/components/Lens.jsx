@@ -30,16 +30,20 @@ export default function Lens({ children, damping = 0.15, ...props }) {
       damping,
       delta
     )
+    state.gl.setRenderTarget(buffer)
+    state.gl.setClearColor('#d8d7d7')
+    state.gl.render(scene, state.camera)
+    state.gl.setRenderTarget(null)
   })
   return (
     <>
       {createPortal(children, scene)}
       <mesh scale={[viewport.width, viewport.height, 1]}>
         <planeGeometry/>
-        <meshBasicMaterial color='#b0b0b0' />
+        <meshBasicMaterial map={buffer.texture} />
       </mesh>
       <mesh
-        scale={0.25}
+        scale={props.scale}
         ref={ref}
         rotation-x={Math.PI / 2}
         geometry={nodes.Cylinder.geometry}
